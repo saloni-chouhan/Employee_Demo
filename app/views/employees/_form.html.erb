@@ -1,0 +1,65 @@
+<%= form_with model: @employee do |form| %>
+  <% if @employee.errors.any? %>
+    <div id="error_explanation">
+      <h3>
+        <%= pluralize(@employee.errors.count, "error") %> prohibited
+        this seed from being saved:
+      </h3>
+      <ul>
+        <% @employee.errors.full_messages.each do |msg| %>
+          <li style="color: red;"><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %><br>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :email %><br>
+    <%= form.text_field :email, class: 'form-control'  %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :address %><br>
+    <%= form.text_field :address, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :gender %><br>
+    <%= form.text_field :gender, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :dob %><br>
+    <%= form.date_field :dob, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :phone_number %><br>
+    <%= form.text_field :phone_number, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :designation %><br>
+    <%= form.text_field :designation, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :date_of_joining %><br>
+    <%= form.date_field :date_of_joining, class: 'form-control' %>
+  </div>
+
+   <div class="form-group">
+    <%= form.label :department %><br />
+    <%= form.collection_select(:department_id,  Department.all,  :id, :name , class: "dropdown-menu") %>
+  </div>
+<br>
+  <div class="form-group">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+
+<% end %>

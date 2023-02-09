@@ -1,0 +1,45 @@
+<%= form_with model: @leave do |form| %>
+  <% if @leave.errors.any? %>
+    <div id="error_explanation">
+      <h3>
+        <%= pluralize(@leave.errors.count, "error") %> prohibited
+        this seed from being saved:
+      </h3>
+      <ul>
+        <% @leave.errors.full_messages.each do |msg| %>
+          <li style="color: red;"><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<div>
+		<%= form.label :from_date %><br>
+    <%= form.date_field :from_date, class: 'form-control' %>
+	</div>
+
+  <div>
+    <%= form.label :to_date %><br>
+    <%= form.date_field :to_date, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :reason %><br>
+    <%= form.text_field :reason, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :mail_to %><br>
+    <%= form.email_field :mail_to, class: 'form-control' %>
+  </div>
+
+   <div>
+    <%= form.label :employee_name %><br />
+    <%= form.collection_select(:employee_id,  Employee.all,  :id, :name ) %>
+  </div>
+<br>
+  <div>
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+
+<% end %>

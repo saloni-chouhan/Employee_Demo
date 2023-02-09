@@ -1,0 +1,61 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="d-flex">
+      <%= search_form_for @q, remote: true do |f| %>
+      <%= f.search_field :name_cont, placeholder: 'Search Here' %>
+        <%= f.submit class: 'btn btn-outline-secondary btn-sm' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<br>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Employees List</h1>
+
+<%= link_to 'Add Employee', new_employee_path, class: 'btn btn-outline-primary btn-sm' %>
+<br>
+<br>
+
+
+<table class="table table-light table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col"><%= sort_link(@q, :name) %></th>
+      <th scope="col">Email</th>
+      <th scope="col">Address</th>
+      <th scope="col">Gender</th>
+      <th scope="col">DOB</th>
+      <th scope="col">Contact</th>
+      <th scope="col">Designation</th>
+      <th scope="col">JoiningDate</th>
+      <th scope="col">Department</th>
+      <th scope="col"colspan="3">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @employees.each do |employee| %>
+    <tr>
+      <td><%= employee.name %></td>
+      <td><%= employee.email %></td>
+      <td><%= employee.address %></td>
+      <td><%= employee.gender %></td>
+      <td><%= employee.dob %></td>
+      <td><%= employee.phone_number %></td>
+      <td><%= employee.designation %></td>
+      <td><%= employee.date_of_joining %></td>
+      <td><%= employee.department&.name %></td>
+      <td><%= link_to 'Show', employee, class: 'btn btn-outline-primary btn-sm' %></td>
+        <td><%= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-outline-success btn-sm' %></td>
+        <td><%= link_to 'Destroy', employee, data: { "turbo_method": :delete , turbo_confirm: "Are you sure?"}, class: 'btn btn-outline-danger btn-sm'  %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+    </div>
+  </div>
+</div>
+

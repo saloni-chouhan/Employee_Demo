@@ -2,7 +2,8 @@ class LeavesController < ApplicationController
   before_action :find_leaves, only: %i(show update edit destroy)
 
   def index
-    @leaves = Leave.all
+    @q = Leave.ransack(params[:q])
+    @leaves = @q.result(distinct: true)
   end
 
   def new

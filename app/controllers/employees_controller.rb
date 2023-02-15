@@ -2,7 +2,6 @@ class EmployeesController < ApplicationController
   before_action :find_employee, only: %i(show update edit destroy)
 
   def index
-    # @employees = Employee.all
     @q = Employee.ransack(params[:q])
     @employees = @q.result(distinct: true)
   end

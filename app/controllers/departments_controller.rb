@@ -2,7 +2,8 @@ class DepartmentsController < ApplicationController
   before_action :find_department, only: %i(show update edit destroy)
 
   def index
-    @departments = Department.all
+    @q = Department.ransack(params[:q])
+    @departments = @q.result(distinct: true)
   end
 
   def new

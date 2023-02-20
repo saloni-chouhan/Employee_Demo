@@ -10,3 +10,7 @@
     Department.create!(name: "Business Development Executive")
     Department.create!(name: "Development")
     Department.create!(name: "Finance")
+
+    Employee.all.each do |employee|
+      employee.update(password: 'password@123')
+    end

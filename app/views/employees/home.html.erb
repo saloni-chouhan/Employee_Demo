@@ -1,0 +1,17 @@
+	<% if employee_signed_in? %>
+    <div class="alert alert-warning alert-dismissible fade show">
+        <p>Hello, <%=current_employee.name %>!</p>
+        <p>You are logged in as <%=current_employee.role %></p>
+
+    <p>You have been successfully authenticated!</p>
+    <p>You are now ready to interact with this application.</p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+    </button>
+    </div>
+</div>
+    <% else %>
+      <p>Please Sign Up or login!</p>
+      <%=link_to 'Sign Up', new_employee_registration_path, class: 'btn btn-outline-primary' %>
+      <%=link_to 'Login', new_employee_session_path, class: 'btn btn-outline-primary' %>
+    <% end %>
+  

@@ -15,4 +15,11 @@ class Employee < ApplicationRecord
   validates_each :name do |record, attr, value|
     record.errors.add(attr, 'must start with upper case') if value =~ /\A[[:lower:]]/
   end
+
+    def self.ransackable_attributes(auth_object = nil)
+    ["address", "created_at", "date_of_joining", "department_id", "designation", "dob", "email", "gender", "id", "name", "phone_number", "role", "updated_at"]
+    end
+    def self.ransackable_associations(auth_object = nil)
+      ["department", "leaves"]
+    end
 end

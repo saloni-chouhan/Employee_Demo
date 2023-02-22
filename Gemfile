@@ -34,7 +34,7 @@ gem "redis", "~> 4.0"
 
 gem 'ransack'
 
-gem 'devise'
+gem 'devise', '~> 4.9.0'
 
 # gem 'faker'
 

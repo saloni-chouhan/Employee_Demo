@@ -1,17 +1,18 @@
 class LeavesController < ApplicationController
   before_action :find_leaves, only: %i(show update edit destroy)
+  before_action :find_employee
 
   def index
-    @q = Leave.ransack(params[:q])
+    @q = @employee.leaves.ransack(params[:q])
     @leaves = @q.result(distinct: true)
   end
 
   def new
-    @leave = Leave.new
+    @leave = @employee.leaves.new
   end
 
   def create
-    @leave = Leave.new(leaves_params)
+    @leave = @employee.leaves.new(leaves_params)
 
     if @leave.save
       redirect_to @leave, status: :created
@@ -24,14 +25,16 @@ class LeavesController < ApplicationController
   end
 
   def update
+    @leave = @employee.leaves.find_by(id: params[:id])
     if @leave.update(leaves_params)
-      redirect_to :show, status: :ok
+      redirect_to leafe_path
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
+    @leave = @employee.leaves.find_by(id: params[:id])
     @leave.destroy
     redirect_to leaves_path
   end
@@ -44,5 +47,9 @@ class LeavesController < ApplicationController
 
   def find_leaves
     @leave = Leave.find(params[:id])
+  end
+
+  def find_employee
+    @employee = Employee.find_by(id: current_employee)
   end
 end

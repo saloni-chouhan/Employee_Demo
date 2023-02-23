@@ -56,6 +56,11 @@
         <% end %>
       </tbody>
     </table>
+    <div class="apple_pagination">
+      <div class="page_info">
+      </div>
+      <%= will_paginate @employees, :container => false %>
+    </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,20 @@
+<%= form_with model: @holiday do |form| %>
+  <div class="form-field">
+    <%= form.label :date %>
+    <%= form.date_field :date, class: 'form-control' %>
+  </div><br>
+
+  <div class="form-field">
+    <%= form.label :occasion %>
+    <%= form.text_field :occasion, class: 'form-control' %>
+  </div><br>
+
+  <div class="form-field">
+    <%= form.label :day %>
+    <%= form.text_field :day, class: 'form-control' %>
+  </div><br>
+
+  <div class="form-field">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -30,7 +30,7 @@
 
   <div>
     <%= form.label :mail_to %><br>
-    <%= form.email_field :mail_to, class: 'form-control' %>
+    <%= form.email_field :mail_to, class: 'form-control', value: current_employee.email %>
   </div>
 
   <div>

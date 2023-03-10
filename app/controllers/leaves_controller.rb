@@ -15,6 +15,7 @@ class LeavesController < ApplicationController
     @leave = @employee.leaves.new(leaves_params)
 
     if @leave.save
+      LeaveMailer.with(leave: @leave, user: current_employee).send_leave_notification.deliver_later
       redirect_to @leave, status: :created
     else
       render :new, status: :unprocessable_entity

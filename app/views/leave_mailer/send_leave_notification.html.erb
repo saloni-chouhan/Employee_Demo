@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello, <%= @user.email %></h1>
+    <p>
+      You have successfully applied for the leave,<br><br>
+      Here are the details of your leave application:<br><br>
+      From Date: <%= @leave.from_date %><br><br>
+      To Date: <%= @leave.to_date %><br><br>
+      Reason: <%= @leave.reason %>
+    </p>
+  </body>
+</html>

@@ -15,6 +15,7 @@ class LeavesController < ApplicationController
     @leave = @employee.leaves.new(leaves_params)
 
     if @leave.save
+      SendWelcomeEmailJob.perform_later(current_employee.id)
       redirect_to @leave, status: :created
     else
       render :new, status: :unprocessable_entity
